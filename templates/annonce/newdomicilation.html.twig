@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}Hello ArticleController!{% endblock %}
+{% block body %}
+<style>
+
+ .ahmed > ul {
+  list-style-type: none;
+  margin: 10;
+  padding: 10;
+  overflow: hidden; 
+}
+
+.ahmed > ul > li {
+  float: left;
+    padding-left: 10px;
+  padding-right: 10px;
+   
+}
+
+.ahmed > ul > li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 18px;
+
+  background-color: #000;
+}
+
+</style>
+ <div class="site-section site-section-sm pb-0">
+      <div class="container">
+      <h1>Remplir votre annonce</h1>
+<div class="row">
+<div class="ahmed">
+<ul>
+ <li><a href="{{ path('annonce_new')}}">Ajouter Annonce</a></li>
+ <li><a href="{{ path('confidentielle_new')}}">Ajouter Annonce confidentielle</a></li>
+  <li><a href="{{ path('coworking_new')}}">Louer Coworking </a></li>
+  <li><a href="{{ path('domiciliation_new')}}">Louer Domiciliation</a></li>
+</ul>
+</div>
+{{ form_start(form)}}
+<div class="row form-group">
+<div class="col-md-12 col-lg-12 mb-3 mb-md-0">
+{{ form_row(form.titre, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="col-md-12 col-lg-12 mb-3 mb-md-0">
+{{ form_row(form.prix, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="col-md-12 col-lg-12 mb-3 mb-md-0">
+{{ form_row(form.adresse, {'attr': { 'class': 'form-control'}}) }}
+</div>
+<div class="col-md-12 col-lg-12 mb-3 mb-md-0">
+{{ form_row(form.ville, {'attr': { 'class': 'form-control'}}) }}
+</div>
+<div class="col-md-12 col-lg-12 mb-3 mb-md-0">
+{{ form_row(form.gouvernorat, {'attr': { 'class': 'form-control'}}) }}
+</div>
+<div class="col-md-12 col-lg-12 mb-3 mb-md-0">
+{{ form_row(form.telephone, {'attr': { 'class': 'form-control'}}) }}
+</div>
+<div class="col-md-12 col-lg-12 mb-3 mb-md-0">
+{{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+</div>
+<button class="btn btn-success">Envoyer</button>
+</div>
+{{ form_end(form)}}
+</div></div></div>
+{% endblock %}

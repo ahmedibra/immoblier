@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+<section class="contact-section">
+            <div class="container">
+ 
+                <div class="row">
+                <table>
+                <tr><td><a href="{{ path('admin') }}" class="btn btn-info btn-xs pull-right mb-10 mt-10">Liste des annonces</a></td>
+                <td><a href="{{ path('confidentielle') }}" class="btn btn-info btn-xs pull-right mb-10 mt-10">Liste des annonces confidentielles</a></td></tr></table>
+                 <td><a href="{{ path('list_confier') }}" class="btn btn-info btn-xs pull-right mb-10 mt-10">Liste des annonces confiers</a></td></tr></table>
+    <div class="row col-md-12 col-md-offset-2 custyle">
+  
+    <table class="table table-striped custab">
+    <thead>
+    <hr>
+        <tr>
+            <th>Transaction</th>
+            <th>Type de bien</th>
+            <th>Ville</th>
+            <th>Budget Min</th>
+            <th>Budget Max</th>
+            <th>Surface Min</th>
+            <th>Surface Max</th>
+            <th>Etat</th>
+            <th>Utulisateur</th>
+            <th>Créer le</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    {% for annonce in annonces %}
+            <tr>
+     <td> {{annonce.transaction}} </td>
+     <td> {{annonce.typedebien}} </td>
+     <td> {{annonce.ville}} </td>
+     <td> {{annonce.budgetMin}} </td>
+     <td> {{annonce.budgetMax}} </td>
+     <td> {{annonce.surfaceMin}} </td>
+     <td> {{annonce.surfaceMax}} </td>
+     <td> {{annonce.etat}} </td>
+     <td> {{annonce.telephone}} </td>
+     
+     <td> {{annonce.getUser().getEmail()}} </td>
+                <td>{{annonce.createdAt | date('d-m-y')}} à {{annonce.createdAt | date('H:i')}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('annonce_confier_edit', {'id' : annonce.id} ) }}">
+                <span class="glyphicon glyphicon-edit"></span> Modifier</a> <a href="{{ path('confier_admin-delete', {'id' : annonce.id} ) }}"  class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove"></span> Supprimer</a></td>
+</td>
+                
+            </tr>
+            {% endfor %}
+    </table>
+    {# display navigation #}
+<div class="container navigation mt-5">
+    {{ knp_pagination_render(annonces) }}
+</div>
+    </div>
+</div>
+</div></div>
+</section>
+{% endblock %}

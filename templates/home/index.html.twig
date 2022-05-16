@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+
+{% block body %}
+<div class="site-section site-section-sm pb-0">
+      <div class="container">
+        <div class="row">
+          <form class="form-search col-md-12" style="margin-top: -100px;">
+           {{ form_start(form)}}
+            <div class="row  align-items-end">
+            <div class="col-md-2">
+                <div class="select-wrap">
+                  {{ form_row(form.transaction, {'attr': {'class': 'form-control d-block rounded-0'}}) }}
+                </div>
+              </div>
+            <div class="col-md-2">
+                <div class="select-wrap">
+                  {{ form_row(form.typedebien, {'attr': {'class': 'form-control d-block rounded-0'}}) }}
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="select-wrap">
+                   {{ form_row(form.ville, {'attr': {'class': 'form-control d-block rounded-0'}}) }}
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="select-wrap">
+                   {{ form_row(form.maxPrice, {'attr': {'class': 'form-control d-block rounded-0'}}) }}
+                </div>
+              </div>
+              
+              <div class="col-md-2">
+                <div class="select-wrap">
+                   {{ form_row(form.maxSurface, {'attr': {'class': 'form-control d-block rounded-0'}}) }}
+                </div>
+              </div>
+              <div class="col-md-2">
+                 {{ form_row(form.submit, {'attr': {'class': 'btn btn-success text-white btn-block rounded-0'}}) }}
+              </div>
+            </div>
+            {{ form_end(form)}}
+          </form>
+        </div>  
+       
+      </div>
+    </div>
+    <div class="site-section site-section-sm bg-light">
+      <div class="container">
+      
+        <div class="row mb-5">
+        {% for annonce in annonces %}
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="property-entry h-100">
+              <a href="{{ path('annonce_show', {'id' : annonce.id} ) }}" class="property-thumbnail">
+                <div class="offer-type-wrap">
+                  <span class="offer-type bg-danger">{{annonce.transaction}}</span>
+                </div>
+                <img src="http://cabineo.cluster027.hosting.ovh.net/immoblier/public/images/properties/{{(annonce.imageName)}}"| style="width: 360px; height: 230px;" alt="Image" class="img-fluid">
+              </a>
+              <div class="p-4 property-body">
+                <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                <h2 class="property-title"><a href="{{ path('annonce_show', {'id' : annonce.id} ) }}">{{annonce.titre}}</a></h2>
+                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> {{annonce.ville}},{{annonce.gouvernorat}}</span>
+                <strong class="property-price text-primary mb-3 d-block text-success">{{annonce.prix}} DT</strong>
+                <!--<ul class="property-specs-wrap mb-3 mb-lg-0">
+                  <li>
+                    <span class="property-specs">Beds</span>
+                    <span class="property-specs-number">2 <sup>+</sup></span>
+                    
+                  </li>
+                  <li>
+                    <span class="property-specs">Baths</span>
+                    <span class="property-specs-number">2</span>
+                    
+                  </li>
+                  <li>
+                    <span class="property-specs">SQ FT</span>
+                    <span class="property-specs-number">7,000</span>
+                    
+                  </li>
+                </ul>-->
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+       
+        
+    </div>
+    </div>
+{% endblock %}
